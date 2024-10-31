@@ -28,7 +28,8 @@ pip install -r requirements.txt
 python app.py
 ```
 
-A docker build is [coming soon](https://github.com/jamie6king/porkbun_dns_updater/issues/1).
+### Docker
+This app should work with [Docker](https://ghcr.io/jamie6king/porkbun_dns_updater). Aside from the [environmental variables](#environmental-variables), it also requires a folder mounted at `/app/config` containing the `domains.json` file.
 
 ### Environmental Variables
 - `PORKBUN_API_KEY` - a Porkbun API key. ***(REQUIRED)***

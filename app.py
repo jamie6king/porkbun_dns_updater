@@ -27,6 +27,8 @@ else:
 
     debug_output = False
 
+print("[APP] Program started")
+
 # Run job
 def job():
 
@@ -66,13 +68,18 @@ def job():
     if debug_output: print("[DEBUG] API key successfully checked")
 
     # Get the domains from the domains.json file
-    with open("domains.json", "r") as file:
+    try:
+        with open("config/domains.json", "r") as file:
 
-        if debug_output: print("[DEBUG] Fetching domains from domain.json")
+            if debug_output: print("[DEBUG] Fetching domains from domain.json")
 
-        data = json.load(file)
+            data = json.load(file)
 
-        if debug_output: print(f"[DEBUG] Fetched {len(data)} domains")
+            if debug_output: print(f"[DEBUG] Fetched {len(data)} domains")
+    
+    except:
+
+        raise Exception("No domains.json found!")
 
     # Go through each domain in the file
     for domain in data:
@@ -123,6 +130,7 @@ def job():
 
 # Schedule job
 schedule.every().hour.do(job)
+schedule.every(30).seconds.do(job)
 
 # Run schedule
 while True:
