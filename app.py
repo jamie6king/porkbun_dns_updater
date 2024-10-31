@@ -130,7 +130,6 @@ def job():
 
 # Schedule job
 schedule.every().hour.do(job)
-schedule.every(30).seconds.do(job)
 
 # Run schedule
 while True:
